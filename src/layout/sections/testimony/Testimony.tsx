@@ -5,6 +5,7 @@ import {Icon} from "../../../components/icon/Icon";
 import {Slider} from "../../../components/slider/Slider";
 import {FlexWrapper} from "../../../components/FlexWrapper";
 
+// Отзывы, в теории может быть множество
 export const Testimony = () => {
     return (
         <StyledTestimony>
