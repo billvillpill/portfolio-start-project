@@ -3,6 +3,7 @@ import styled from "styled-components";
 import {SectionTitle} from "../../components/SectionTitle";
 import {Icon} from "../../components/icon/Icon";
 import {FlexWrapper} from "../../components/FlexWrapper";
+import {theme} from "../../styles/Theme";
 
 // Имя и ссылки на соц. свои сети
 // строка копирайт
@@ -41,23 +42,43 @@ export const Footer = () => {
 };
 
 const StyledFooter = styled.footer`
-  background-color: #ffb9b0;
-  min-height: 20vh;
-
+  background-color: ${theme.colors.primaryBg};
+  padding: 40px 0;
 `
 const Name = styled.span`
-
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 3px;
 `
 const SocialList = styled.ul`
   display: flex;
-  gap: 30px;
+  gap: 20px;
+  margin: 30px 0;
 `
 const SocialItem = styled.li`
 
 `
 const SocialLink = styled.a`
-
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  background-color: rgba(255, 255, 255, 0.10);
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  color: ${theme.colors.accent};
+  
+  &:hover {
+    color: ${theme.colors.primaryBg};
+    transform: translateY(-4px);
+  }
 `
 const Copyright = styled.small`
-
+  opacity: 0.5;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 400;
 `

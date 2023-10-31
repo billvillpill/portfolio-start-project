@@ -1,35 +1,34 @@
+import React from 'react';
 import styled from "styled-components";
 import {theme} from "../styles/Theme";
 
-export const Button = styled.button`
+export const Link = styled.a`
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 1px;
   text-transform: uppercase;
-  width: 170px;
-  height: 32px;
-  
+  padding: 10px;
+
   position: relative;
   z-index: 0;
   
   &:hover {
     &::before {
-      height: 100%;
-      width: 100%;
+      height: 10px; // показывает линию при наведении на ссылку
     }
   }
   
+  // Линия под ссылкой
   &::before {
     content: "";
     display: inline-block;
-    height: 10px;
-    width: 50%;
+    
     background-color: ${theme.colors.accent};
     
     position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 5px;
+    left: 0; // т.к есть padding отсчитывыет от 0 с учетом этого пространсвта
+    right: 0;
     z-index: -1;
   }
 `
