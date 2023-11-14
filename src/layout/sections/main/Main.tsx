@@ -6,7 +6,16 @@ import {S} from './Main_Styles';
 import Typewriter from 'typewriter-effect';
 import Tilt from 'react-parallax-tilt';
 
+export const valueTilt = {
+    enable: true,
+    scaleTilt: 1.03
+}
+
 export const Main: React.FC = () => {
+    {if (window.screen.width <= 1110) {
+        valueTilt.enable = false;
+        valueTilt.scaleTilt = 1
+    }}
     return (
         <S.Main id={"home"}>
             <Container>
@@ -28,12 +37,13 @@ export const Main: React.FC = () => {
                         </S.MainTitle>
                     </div>
                     <Tilt
+                        tiltEnable={valueTilt.enable}
                         className="parallax-effect-img"
                         tiltMaxAngleX={40}
                         tiltMaxAngleY={40}
                         perspective={800}
                         transitionSpeed={1500}
-                        scale={1.1}
+                        scale={valueTilt.scaleTilt}
                         gyroscope={true}
                     >
                         <S.PhotoWrapper>
