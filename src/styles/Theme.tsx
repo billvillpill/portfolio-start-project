@@ -13,5 +13,15 @@ export const theme = {
         tablet: "screen and (max-width: 768px)",
         mobile: "screen and (max-width: 576px)",
         desktop: "screen and (min-width: 1140px)",
+    },
+
+    social: {
+        sizeheight: "21",
+        sizeWidth: "21",
+        sizeViewbox: "0 0 21 21",
+    },
+
+    animations: {
+        transition: "0.2s ease-in-out"
     }
 }

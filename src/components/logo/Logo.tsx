@@ -1,10 +1,11 @@
 import React from 'react';
 import {Icon} from '../icon/Icon';
+import {animateScroll as scroll} from "react-scroll";
 // логотип
 
-export const Logo = () => {
+export const Logo: React.FC = () => {
     return (
-        <a>
+        <a onClick={() => {scroll.scrollToTop()}}>
            <Icon iconId={"code"}/>
         </a>
     );

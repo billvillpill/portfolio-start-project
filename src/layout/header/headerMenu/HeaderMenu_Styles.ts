@@ -1,17 +1,14 @@
 import styled, {css} from "styled-components";
 import {theme} from "../../../styles/Theme";
+import {Link} from "react-scroll";
 
 // Стили для меню
 // Menu
 
-const Link = styled.a`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 30px;
-  font-weight: 400;
-  text-align: center;
-  color: transparent;
- 
+const MenuItem = styled.li`
+  position: relative;
 `
+
 const Mask = styled.span`
   position: absolute;
   top: 0;
@@ -21,6 +18,7 @@ const Mask = styled.span`
   overflow-y: hidden;
   //outline: 1px solid red;
   color: ${theme.colors.accent};
+  transition: ${theme.animations.transition};
   
   & + & {
     top: 50%;
@@ -31,9 +29,13 @@ const Mask = styled.span`
   } 
 `
 
-const MenuItem = styled.li`
-  position: relative;
-  
+const NavLink = styled(Link)`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  text-align: center;
+  color: transparent;
+
   &::before {
     content: "" ;
     display: inline-block;
@@ -44,24 +46,26 @@ const MenuItem = styled.li`
     left: -10px;
     right: -10px;
     z-index: 1;
-    
+
     transform: scale(0); // спрятали линию
+    transition: ${theme.animations.transition};
   }
-  
-  &:hover {
+
+  &:hover, &.active {
     &::before {
       transform: scale(1); // показали линию
     }
-    
+
     ${Mask} {
-      transform: skewX(12deg) translateX(5px); // верхняя маска сдвигаетс (в право) на 5px и на 12 градусов
+      transform: skewX(12deg) translateX(5px); // верхняя маска сдвигается (в право) на 5px и на 12 градусов
       color: ${theme.colors.font};   // цыет при наведении на ссылку
-      
+
       & + ${Mask} {
         transform: skewX(12deg) translateX(-5px);  // нижняя маска сдвигаетс (в влево) на -5px и на 12 градусов 
       }
     }
   }
+ 
 `
 
 
@@ -78,22 +82,29 @@ const MobileMenuPopup = styled.div<{ isOpen: boolean }>`
   bottom: 0;
   z-index: 999;
   background-color: rgba(31, 31, 32, 0.9);
-  display: none; // по умолчанию мобильное меню не работает, т.е. если false
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-100%);
+  transition: 1s ease-in-out;
   
   ul {
     display: flex;
-    gap: 30px;
+    gap: 10px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    transition: 1s ease-in-out;
   }
 
   // приходит пропс на основании переданой информации true or false 
   // отображаем меню
   ${props => props.isOpen && css<{ isOpen: boolean }>`
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    transform: translateY(0);
+    
+    & ul {
+      gap: 30px;
+    }
   `}
 `
 // кнопка меню бургер с анимацией
@@ -166,7 +177,7 @@ const DesktopMenu = styled.nav`
 
 
 export const S = {
-    Link,
+    NavLink,
     Mask,
     MenuItem,
 

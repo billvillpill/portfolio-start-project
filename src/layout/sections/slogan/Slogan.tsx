@@ -6,7 +6,7 @@ import {Container} from "../../../components/Container";
 import {FlexWrapper} from "../../../components/FlexWrapper";
 
 // призыв, просто слоган и кнопка
-export const Slogan = () => {
+export const Slogan: React.FC = () => {
     return (
         <StyledSlogan>
             <Container>

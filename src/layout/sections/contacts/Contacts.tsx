@@ -1,66 +1,42 @@
-import React from 'react';
-import styled from "styled-components";
+import React, {ElementRef, useRef} from 'react';
 import {SectionTitle} from "../../../components/SectionTitle";
 import {Button} from "../../../components/Button";
 import {Container} from "../../../components/Container";
-import {theme} from "../../../styles/Theme";
+import {S} from './Contacts_Styles';
+import emailjs from '@emailjs/browser';
 
-export const Contacts = () => {
+export const Contacts: React.FC = () => {
+    const form = useRef<ElementRef<'form'>>(null);
+
+    const sendEmail = (e: any) => {
+        e.preventDefault();
+
+        if(!form.current) return
+
+        emailjs.sendForm('service_euvln2h', 'template_wcvd5x3', form.current, 'XywDyYXXucsQDn8EH')
+            .then((result) => {
+                console.log(result.text);
+            }, (error) => {
+                console.log(error.text);
+            });
+        e.target.reset()
+    };
+
+
     return (
-        <StyledContacts>
+        <S.Contacts id={"contact"} >
             <Container>
                 {/*звголовок h2*/}
                 <SectionTitle>Contact</SectionTitle>
                 {/*форма*/}
-                <StyledForm>
-                    <Field placeholder={"name"}/>
-                    <Field placeholder={"subject"}/>
-                    <Field placeholder={"message"} as={"textarea"}/>
+                <S.Form ref={form} onSubmit={sendEmail}>
+                    <S.Field required placeholder={"name"} name={"user_name"}/>
+                    <S.Field required placeholder={"email"} name={"email"}/>
+                    <S.Field required placeholder={"subject"} name={"subject"}/>
+                    <S.Field required placeholder={"message"} as={"textarea"} name={"message"}/>
                     <Button type={"submit"}>Send message</Button>
-                </StyledForm>
+                </S.Form>
             </Container>
-
-
-        </StyledContacts>
+        </S.Contacts>
     );
 };
-
-const StyledContacts = styled.section`
-  
-`
-const StyledForm = styled.form`
-  max-width: 540px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  margin: 0 auto;
-  
-  textarea {
-    resize: none; // запрещает растягивать textarea
-    height: 155px;
-  }
-`
-
-
-const Field = styled.input`
-  width: 100%;
-  border: 1px solid ${theme.colors.borderColor};
-  background-color: ${theme.colors.secondaryBg};
-  padding: 7px 15px;
-
-  color: ${theme.colors.font};   //цвет вводимого текста
-  &::placeholder {                // цвет placeholder
-    color: ${theme.colors.placeholderColor};
-    text-transform: capitalize;
-  }
-  &:focus-visible {
-    outline: 1px solid ${theme.colors.borderColor};
-  }
-  
-  font-family: 'Poppins', sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.6px;
-`

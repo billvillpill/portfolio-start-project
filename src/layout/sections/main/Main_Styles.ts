@@ -12,8 +12,7 @@ const Main = styled.section`
 const PhotoWrapper = styled.div`
   position: relative;
   z-index: 0;
-  
-
+   
   &::before {
     content: "";
     width: 360px;
@@ -42,6 +41,7 @@ const Photo = styled.img`
   object-fit: cover;
   margin-right: 20px;
   
+  
   @media ${theme.media.mobile} {
     width: 310px;
     height: 380px;
@@ -49,7 +49,13 @@ const Photo = styled.img`
 
 `
 const MainTitle = styled.h1`
-  ${font({weight: 400, Fmax: 27, Fmin: 20})}
+  ${font({weight: 400, Fmax: 27, Fmin: 20})};
+  //скрываю p, чтобы не дублировался заголовок. если не дублировать плохо для CEO
+  // т.к. текст заголовка постоянно изменяется
+  p {
+    display: none;
+  }
+  
 `
 const Name = styled.h2`
   ${font({family: "'Josefin Sans', sans-serif", weight: 700, Fmax: 50, Fmin: 36})}

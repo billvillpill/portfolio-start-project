@@ -1,5 +1,4 @@
 import './App.css';
-import styled from 'styled-components';
 import {Header} from "./layout/header/Header";
 import {Main} from "./layout/sections/main/Main";
 import {Skills} from "./layout/sections/skills/Skills";
@@ -8,11 +7,14 @@ import {Testimony} from "./layout/sections/testimony/Testimony";
 import {Contacts} from "./layout/sections/contacts/Contacts";
 import {Slogan} from "./layout/sections/slogan/Slogan";
 import {Footer} from "./layout/footer/Footer";
+import {Paticle} from "./components/particle/Paticle";
+import {GoTopBtn} from "./components/goTopBtn/GoTopBtn";
 
 
 function App() {
     return (
         <div className="App">
+            <Paticle />
             <Header />
             <Main />
             <Skills />
@@ -21,6 +23,7 @@ function App() {
             <Contacts />
             <Slogan />
             <Footer />
+            <GoTopBtn/>
         </div>
     );
 }
